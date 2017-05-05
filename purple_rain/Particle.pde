@@ -4,7 +4,6 @@ class Particle {
   PVector acceleration;
   float mass = 5;
   
-  // Arbitrary damping to simulate friction / drag 
   float damping = 0.95;
   
   float lifeSpan = 255;
@@ -20,7 +19,6 @@ class Particle {
     _color = r;
   } 
 
-  // Standard Euler integration
   void update() { 
     velocity.add(acceleration);
     velocity.mult(damping);
@@ -38,15 +36,12 @@ class Particle {
     }
   }
 
-  // Newton's law: F = M * A
   void applyForce(PVector force) {
-    PVector f = force.get();
+    PVector f = force.copy();
     f.div(mass);
     acceleration.add(f);
   }
 
-
-  // Draw the bob
   void display() { 
     noStroke();
     fill(palette[_color], lifeSpan);
